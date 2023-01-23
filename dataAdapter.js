@@ -8,26 +8,39 @@ function project(obj, projection) {
     return projectedObj;
 }
 
+var subscriptionKey = process.env.APIKEY ||  "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";
+
+async function getContent(fetch, prompt) {
+    const url = "https://api.openai.com/v1/completions"
+    const request = await fetch(url, {
+        method: "POST",
+        headers: {
+            'Authorization': `Bearer ${subscriptionKey}`,
+            'Content-type': 'application/json',
+        },
+        body: JSON.stringify({ "model": "text-davinci-003", "prompt": prompt, "temperature": 0.5, "max_tokens": 2048 })
+    });
+    const response = await request.json();
+
+    return {
+        original: prompt,
+        result: response.choices[0].text.slice(2),
+    }
+}
+
 async function getFirstTen(fetch) {
+    const translationOne = await getContent(fetch, "Write an email about Templafy")
     try {
-        const url = `https://api.polygon.io/v3/reference/tickers?active=true&sort=ticker&order=asc&limit=10&apiKey=vE4hUUHUa4kO58E4N8prNuo6O5bdlvmF`;
-        const request = await fetch(url);
-        const response = await request.json();
-        return response.results;
+        return [translationOne];
     } catch (error) {
         console.log(error);
     }
 }
 
-async function getSingle(fetch, id) {
+async function getSingle(fetch, translation) {
     try {
-        const url = `https://api.polygon.io/v3/reference/tickers/${id}?apiKey=vE4hUUHUa4kO58E4N8prNuo6O5bdlvmF`;
-        const request = await fetch(url);
-        const response = await request.json();
-        var results = response.results;
-        results.logo_url = results.branding.logo_url + "?apiKey=vE4hUUHUa4kO58E4N8prNuo6O5bdlvmF";
-        results.icon_url = results.branding.icon_url + "?apiKey=vE4hUUHUa4kO58E4N8prNuo6O5bdlvmF";
-        return results;
+        const result = await getContent(fetch, translation);
+        return result
     } catch (error) {
         console.log(error);
     }

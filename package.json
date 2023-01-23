@@ -11,11 +11,8 @@
         "node-fetch": "^2.6.7",
         "query": "github:protobi/query",
         "simple-odata-server": "^1.1.1",
-        "simple-odata-server-mongodb": "^1.0.0"
-    },
-    "devDependencies": {},
-    "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1"
+        "simple-odata-server-mongodb": "^1.0.0",
+        "dotenv": "^16.0.3"
     },
     "author": "",
     "license": "ISC"

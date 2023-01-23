@@ -16,6 +16,12 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
+      - name: create env file
+        run: |
+          touch .env
+          echo APIKEY=${{ secrets.APIKEY }} >> .env
+          echo URL=${{ secrets.URL }} >> .env
+
       - name: Set up Node.js version
         uses: actions/setup-node@v1
         with:

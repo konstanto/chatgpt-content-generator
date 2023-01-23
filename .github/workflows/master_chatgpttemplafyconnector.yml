@@ -20,7 +20,7 @@ jobs:
         run: |
           touch .env
           echo APIKEY=${{ secrets.APIKEY }} >> .env
-          echo URL=${{ secrets.URL }} >> .env
+          echo URL=${{ vars.URL }} >> .env
 
       - name: Set up Node.js version
         uses: actions/setup-node@v1

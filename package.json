@@ -1,0 +1,22 @@
+{
+    "name": "odatasample",
+    "version": "1.0.0",
+    "description": "",
+    "main": "index.js",
+    "dependencies": {
+        "@microsoft/microsoft-graph-client": "^2.2.1",
+        "bluebird": "^3.7.2",
+        "isomorphic-fetch": "^3.0.0",
+        "mongodb": "^3.6.9",
+        "node-fetch": "^2.6.7",
+        "query": "github:protobi/query",
+        "simple-odata-server": "^1.1.1",
+        "simple-odata-server-mongodb": "^1.0.0"
+    },
+    "devDependencies": {},
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1"
+    },
+    "author": "",
+    "license": "ISC"
+}
